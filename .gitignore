@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Environment Variables & Secrets (Keep only .env.example)
+.env
+.env.*
+!.env.example
+.env.local
+.env.production
+.env.development
+
+# Logs & Temporary Files
+logs/
+*.log
+npm-debug.log*
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
