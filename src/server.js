@@ -30,6 +30,21 @@ app.use(morgan('dev'));
 // Layer 2: Edge Host Header Interception Middleware
 app.use(hostParserMiddleware);
 
+// Root Gateway & Health Check Endpoint (Render Health Checks & Root Ping)
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'ONLINE',
+    service: 'InstantStore Backend Gateway',
+    health: '/api/health',
+    uptime: `${process.uptime().toFixed(1)}s`,
+    timestamp: new Date().toISOString(),
+  });
+});
+
+app.head('/', (req, res) => {
+  res.status(200).end();
+});
+
 // Diagnostic Health & Edge Telemetry Endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({
